@@ -11,8 +11,7 @@ abstract contract CodeConstants {
     // LINK / ETH price
     int256 public MOCK_WEI_PER_UINT_LINK = 4e15;
 
-    address public FOUNDRY_DEFAULT_SENDER =
-        0x1804c8AB1F12E6bbf3894d4083f33e07309d1f38;
+    address public FOUNDRY_DEFAULT_SENDER = 0x1804c8AB1F12E6bbf3894d4083f33e07309d1f38;
 
     uint256 public constant ETH_SEPOLIA_CHAIN_ID = 11155111;
     uint256 public constant ETH_MAINNET_CHAIN_ID = 1;
@@ -40,6 +39,7 @@ contract HelperConfig is CodeConstants, Script {
                             STATE VARIABLES
     //////////////////////////////////////////////////////////////*/
     // Local network state variables
+
     NetworkConfig public localNetworkConfig;
     mapping(uint256 chainId => NetworkConfig) public networkConfigs;
 
@@ -52,9 +52,7 @@ contract HelperConfig is CodeConstants, Script {
         return getConfigByChainId(block.chainid);
     }
 
-    function getConfigByChainId(
-        uint256 chainId
-    ) public returns (NetworkConfig memory) {
+    function getConfigByChainId(uint256 chainId) public returns (NetworkConfig memory) {
         if (networkConfigs[chainId].vrfCoordinatorV2 != address(0)) {
             return networkConfigs[chainId];
         } else if (chainId == 31337) {
@@ -64,11 +62,7 @@ contract HelperConfig is CodeConstants, Script {
         }
     }
 
-    function getSepoliaEthConfig()
-        public
-        pure
-        returns (NetworkConfig memory sepoliaNetworkConfig)
-    {
+    function getSepoliaEthConfig() public pure returns (NetworkConfig memory sepoliaNetworkConfig) {
         sepoliaNetworkConfig = NetworkConfig({
             subscriptionId: 0, // If left as 0, our scripts will create one!
             gasLane: 0x787d74caea10b2b357790d5b5247c2f63d1d91572a9846f780606e4d953677ae,
@@ -79,11 +73,7 @@ contract HelperConfig is CodeConstants, Script {
         });
     }
 
-    function getMainnetEthConfig()
-        public
-        pure
-        returns (NetworkConfig memory mainnetNetworkConfig)
-    {
+    function getMainnetEthConfig() public pure returns (NetworkConfig memory mainnetNetworkConfig) {
         mainnetNetworkConfig = NetworkConfig({
             subscriptionId: 0, // If left as 0, our scripts will create one!
             gasLane: 0x9fe0eebf5e446e3c998ec9bb19951541aee00bb90ea201ae456421a2ded86805,
@@ -102,10 +92,7 @@ contract HelperConfig is CodeConstants, Script {
         console.log("Local network detected, deploying mocks...");
 
         vm.startBroadcast();
-        VRFCoordinatorV2Mock vrfCoordinatorV2Mock = new VRFCoordinatorV2Mock(
-            MOCK_BASE_FEE,
-            MOCK_GAS_PRICE_LINK
-        );
+        VRFCoordinatorV2Mock vrfCoordinatorV2Mock = new VRFCoordinatorV2Mock(MOCK_BASE_FEE, MOCK_GAS_PRICE_LINK);
         uint64 subId = vrfCoordinatorV2Mock.createSubscription();
         vm.stopBroadcast();
 
