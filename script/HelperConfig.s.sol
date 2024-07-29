@@ -77,13 +77,13 @@ contract HelperConfig is CodeConstants, Script {
     {
         sepoliaNetworkConfig = NetworkConfig({
             subscriptionId: 0, // If left as 0, our scripts will create one!
-            gasLane: 0x787d74caea10b2b357790d5b5247c2f63d1d91572a9846f780606e4d953677ae,
+            gasLane: 0x474e34a077df58807dbe9c96d3c009b23b3c6d0cce433e59bbf5b34f823bc56c,
             interval: 30, // 30 seconds
             entranceFee: 0.01 ether,
             callbackGasLimit: 500000, // 500,000 gas
-            vrfCoordinatorV2: 0x9DdfaCa8183c41ad55329BdeeD9F6A8d53168B1B,
+            vrfCoordinatorV2: 0x8103B0A8A00be2DDC778e6e7eaa21791Cd364625,
             account: 0x4855830575d1201A881fCb8e27b6aC525B421f89,
-            link: 0x514910771AF9Ca656af840dff83E8264EcF986CA
+            link: 0x779877A7B0D9E8603169DdbD7836e478b4624789
         });
     }
 
